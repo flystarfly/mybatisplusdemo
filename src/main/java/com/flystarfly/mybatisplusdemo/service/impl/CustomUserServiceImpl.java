@@ -36,7 +36,9 @@ public class CustomUserServiceImpl implements UserDetailsService {
         QueryWrapper<SysUser> queryWrapper = new QueryWrapper<>();
         queryWrapper.lambda().eq(SysUser::getUsername, username);
         SysUser sysUser = sysUserMapper.selectOne(queryWrapper);
-        return new User(sysUser.getUsername(), new BCryptPasswordEncoder().encode(sysUser.getPassword()), sysUser.getAuthorities());
-
+        if(sysUser!=null){
+            return new User(sysUser.getUsername(), new BCryptPasswordEncoder().encode(sysUser.getPassword()), sysUser.getAuthorities());
+        }
+        return  new SysUser();
     }
 }

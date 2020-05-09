@@ -63,14 +63,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable()//禁用了 csrf 功能
                 ///login loginOut 不限定
                 .authorizeRequests()
+                // 设置静态的资源允许所有访问
+                .antMatchers("/static/**").permitAll()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/loginOut").permitAll()
                 .anyRequest().access("@rbacService.hasPermission(request, authentication)")
-                .and().formLogin()
-                .failureUrl("/loginFail")
-         //开启httpbasic验证
-        .and().httpBasic()
-        .and().logout();
+                .and().formLogin().loginPage("/login")
+                .and().logout().logoutUrl("/loginOut").logoutSuccessUrl("/login").permitAll();
+         //开启httpbasic验
 //                .antMatchers("/decision/**","/govern/**","/employee/*").hasAnyRole("EMPLOYEE","ADMIN")//对decision和govern 下的接口 需要 USER 或者 ADMIN 权限
 //                .antMatchers("/employee/login").permitAll()///employee/login 不限定
 //                .antMatchers("/admin/**").hasRole("ADMIN")//对admin下的接口 需要ADMIN权限

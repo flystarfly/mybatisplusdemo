@@ -16,3 +16,10 @@ spring:
 
 mybatis-plus:
   mapper-locations: classpath:com.essence.prescript.mapping/*Mapper.xml
+
+
+beetl:
+  enabled: true
+  suffix: btl
+beetl-beetlsql:
+  dev: true # 即自动检查模板变化
