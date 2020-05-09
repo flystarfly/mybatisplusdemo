@@ -1,0 +1,18 @@
+server:
+  port: 8093
+  tomcat:
+    uri-encoding: UTF-8
+
+spring:
+  datasource:
+    username: root
+    password: 12345678
+    url: jdbc:mysql://127.0.0.1:3306/sysconsole?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true
+    #        password: root
+    #        url: jdbc:mysql://47.89.22.135:3306/yiling_paltform?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true
+    #        url: jdbc:mysql://192.168.1.190:3306/yiling_paltform?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&autoReconnect=true
+
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis-plus:
+  mapper-locations: classpath:com.essence.prescript.mapping/*Mapper.xml

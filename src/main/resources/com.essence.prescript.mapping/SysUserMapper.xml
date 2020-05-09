@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.flystarfly.mybatisplusdemo.mapper.SysUserMapper">
+
+    <resultMap id="BaseResultMap" type="com.flystarfly.mybatisplusdemo.domain.entity.SysUser">
+        <result property="seqid" column="seqid" jdbcType="INTEGER"/>
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="roleId" column="role_id" />
+        <result property="roleName" column="role_name" />
+    </resultMap>
+    <select id="querySysUserList"  resultMap="BaseResultMap">
+        select * from sys_user
+    </select>
+
+    <select id="getUrlListByUsername"  resultType="java.lang.String">
+       select func.url from sys_func  func
+    left join sys_role_func role_func on func.seqid = role_func.func_id
+    left join sys_role role on role_func.role_id = role.seqid
+    left JOIN sys_user sys_user on sys_user.role_id = role.seqid
+    where sys_user.username = 'admin'
+    </select>
+
+
+</mapper>
